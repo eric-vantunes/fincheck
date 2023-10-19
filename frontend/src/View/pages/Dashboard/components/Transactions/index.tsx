@@ -13,17 +13,19 @@ import { Spinner } from "../../../../components/Spineer";
 import emptyStateImage from "../../../../../assets/images/empty-state.svg"
 
 export function Transactions() {
-  const { areValuesVisible, isLoading, transactions } = useTransactionsController()
+  const { areValuesVisible, isInitialLoading, transactions, isLoading } = useTransactionsController()
+
+  const hasTransactions = transactions.length > 0
 
   return (
     <div className="bg-gray-100 rounded-2xl w-full h-full p-10 flex flex-col">
-      {isLoading && (
+      {isInitialLoading && (
         <div className="w-full h-full flex items-center justify-center">
           <Spinner className="w-10 h-10" />
         </div>
       )}
 
-      {!isLoading && (
+      {!isInitialLoading && (
         <>
           <header>
             <div className="flex intems-centes justify-between">
@@ -61,7 +63,13 @@ export function Transactions() {
           </header>
 
           <div className="mt-4 space-y-2 flex-1 overflow-y-auto">
-            {transactions.length === 0 && (
+            {isLoading && (
+              <div className="h-full flex flex-col justify-center items-center">
+                <Spinner className="w-10 h-10" />
+              </div>
+            )}
+
+            {!hasTransactions && !isLoading && (
               <div className="h-full flex flex-col justify-center items-center">
                 <img src={emptyStateImage} alt="Ilustração" />
                 <p className="text-gray-700">Não encontramos nenhuma transação</p>
@@ -69,7 +77,7 @@ export function Transactions() {
 
             )}
 
-            {transactions.length > 0 && (
+            {(hasTransactions && !isLoading) && (
               <>
                 <div className="bg-white p-4 rounded-2xl flex items-center justify-between gap-4">
                   <div className="flex-1 flex items-center gap-3">
