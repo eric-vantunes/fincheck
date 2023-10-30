@@ -1,5 +1,7 @@
 import { Logo } from "../../components/Logo";
+import { Modal } from "../../components/Modal";
 import { UserMenu } from "../../components/UserMenu";
+import { Fab } from "./Fab";
 import { Accounts } from "./components/Accounts";
 import { DashboardProvider } from "./components/DashboardContext";
 import { Transactions } from "./components/Transactions";
@@ -21,6 +23,11 @@ export function Dashboard() {
             <Transactions />
           </div>
         </main>
+
+        <Fab />
+        <Modal open title="Receitas">
+          Conteúdo
+        </Modal>
       </div>
     </DashboardProvider>
   )
