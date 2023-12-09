@@ -1,3 +1,4 @@
+import { ColorsInputDropdown } from "../../../../components/ColorsInputDropdown";
 import { Input } from "../../../../components/Input";
 import { Modal } from "../../../../components/Modal";
 import { Select } from "../../../../components/Select";
@@ -31,8 +32,24 @@ export function NewAccountModal() {
             placeholder="Nome da conta"
           />
           <Select
-            error="Selecione uma fruta"
+            placeholder="Tipo"
+            options={[
+              {
+                value: "CHECKING",
+                label: "Conta Corrente",
+              },
+              {
+                value: "INVESTMENT",
+                label: "Investimentos",
+              },
+              {
+                value: "CASH",
+                label: "Dinheiro Físico",
+              }
+            ]}
           />
+
+          <ColorsInputDropdown />
         </div>
       </form>
     </Modal>
